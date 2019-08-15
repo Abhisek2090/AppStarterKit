@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StarterKit</string>
+    <string name="device_not_connected_msg">Device is not connected to the internet</string>
+</resources>
