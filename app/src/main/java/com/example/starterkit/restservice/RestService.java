@@ -7,6 +7,7 @@ import com.example.starterkit.BuildConfig;
 import com.example.starterkit.eventbus.RxBus;
 import com.example.starterkit.eventbus.SchedulerProvider;
 import com.example.starterkit.eventbus.SuccessEvent;
+import com.example.starterkit.model.NasaModelClass;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -124,12 +125,12 @@ public class RestService {
         }
     }
 
-    //dummy
+    //example api
 
-    public void getStarterData(int requestcode) {
-        restInterface.getCharacters()
-                .compose(SchedulerProvider.DEFAULT.<Response<Void>>applySchedulers())
-                .subscribe(this.<Response<Void>> createSubscriber(requestcode));
+    public void getStarterData(String apiKey, int requestcode) {
+        restInterface.getPlanetaryData(apiKey)
+                .compose(SchedulerProvider.DEFAULT.<Response<NasaModelClass>>applySchedulers())
+                .subscribe(this.<Response<NasaModelClass>> createSubscriber(requestcode));
     }
 
 

@@ -5,7 +5,11 @@ import com.example.starterkit.dependencyinjection.PresenterComponent;
 import com.example.starterkit.eventbus.Event;
 import com.example.starterkit.eventbus.EventBus;
 import com.example.starterkit.eventbus.EventSubscriber;
+import com.example.starterkit.model.NasaModelClass;
 import com.example.starterkit.restservice.RestService;
+import com.example.starterkit.restservice.ServerResponse;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -37,9 +41,9 @@ public class StarterActivityPresenter extends PresenterStub implements EventSubs
 
 
     //Fetching data using method in restservice
-    public void getData() {
-        iMainActivityView.showProgressBar();
-        restService.getStarterData(Constants.GET_DATA);
+    public void getData(String apiKey) {
+       // iMainActivityView.showProgressBar();
+        restService.getStarterData(apiKey, Constants.GET_DATA);
     }
 
     @Override
@@ -49,6 +53,8 @@ public class StarterActivityPresenter extends PresenterStub implements EventSubs
             case Event.TYPE_SUCCESS:
                 switch (event.getRequestCode()) {
                     case Constants.GET_DATA:
+                        NasaModelClass serverResponse = event.getResult();
+                        iMainActivityView.populateStarterActivity(serverResponse.getUrl(), serverResponse.getTitle());
                         break;
                 }
 
@@ -63,7 +69,7 @@ public class StarterActivityPresenter extends PresenterStub implements EventSubs
 
     }
     public interface IMainActivityView {
-
+        void populateStarterActivity(String url, String desc);
         void showProgressBar();
 
     }

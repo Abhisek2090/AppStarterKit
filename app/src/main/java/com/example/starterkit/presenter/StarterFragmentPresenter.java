@@ -24,10 +24,10 @@ public class StarterFragmentPresenter extends PresenterStub implements EventSubs
         this.iStarterFragmentView = iStarterFragmentView;
     }
 
-    //Fetching data using method in restservice
+    //Fetching data using method in restservice(same as in startActivityPresenter)
 
     public void getData() {
-        restService.getStarterData(Constants.GET_DATA);
+        //restService.getStarterData(Constants.GET_DATA);
     }
 
 
@@ -50,6 +50,9 @@ public class StarterFragmentPresenter extends PresenterStub implements EventSubs
             case Event.TYPE_SUCCESS:
                 switch (event.getRequestCode()) {
                     case Constants.GET_DATA:
+
+                        //data handling same as in startActivityPresenter
+
                         break;
                 }
 
